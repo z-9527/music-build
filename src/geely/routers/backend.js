@@ -1,7 +1,13 @@
 import React from 'react'
-import PrivateRoute from '../../framework/PrivateRoute'
 import LoadableComponent from '../../framework/LoadableComponent'
+import asyncComponent from '../../components/AsyncComponent'
 
-export default [
-    <PrivateRoute key="main_letterNotice"  path="/main/letterNotice" component={LoadableComponent(import('./backend/LetterNotice'))}/>,
-]
+const LetterNotice = asyncComponent(()=>import('./backend/LetterNotice'));
+// const LetterNotice = asyncComponent(()=>LoadableComponent(import('./backend/LetterNotice')));
+// const LetterNotice =(()=>(LoadableComponent(import('./backend/LetterNotice'))))
+
+const backendTabs={
+    letterNotice:<LetterNotice/>
+}
+
+export default backendTabs

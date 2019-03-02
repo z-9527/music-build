@@ -4,7 +4,7 @@ import {Switch} from 'react-router-dom'
 import {Layout, Dropdown, Icon, Tooltip, Menu} from 'antd'
 import {FormattedMessage, injectIntl} from 'react-intl'
 import css from './HomePage.module.less'
-import SideMenu from '../../../../components/SideMenu'
+import SideMenu from '../../../../components/FrontSideMenu'
 import history from '../../../../framework/customHistory'
 import home from '../../home'
 import * as Session from '../../../../framework/utils/Session'
@@ -15,9 +15,7 @@ const {Header, Content, Sider, Footer} = Layout
 class HomePage extends React.Component {
 
     render() {
-
         const {appStore, localeStore: {locale}} = this.props
-
         const languageMenu = (
             <Menu onClick={({key}) => this.handleSelectLanguage(key)}>
                 <Menu.Item style={{padding: '12px 20px', display: (locale.lang) === '中文' ? "none" : "block"}}

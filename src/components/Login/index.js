@@ -1,13 +1,20 @@
 import React, { Component } from 'react'
 import { observer, inject } from 'mobx-react'
 import { Form, Input, Icon, Button } from 'antd'
-import styles from './index.module.less'
 
 const form = Form.create()
 const project = process.env.REACT_APP_PROJECT_NAME
 const config=require(`@/${project}/config`).default
 const logo = require(`./imgs/${project}/login_logo.png`)
 const bg = require(`./imgs/${project}/login_BG.png`)
+
+
+//根据项目引入对相应样式
+var styles=''
+switch (project){
+    case 'geely':
+        styles = require(`../../geely/Login/index.module.less`)
+}
 
 @form @observer
 class Index extends Component {

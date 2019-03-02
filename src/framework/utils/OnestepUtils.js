@@ -168,3 +168,15 @@ export function AESEncrypt(data,key) {
     let encrypted = CryptoJS.AES.encrypt(sendData, AES_KEY,{mode:CryptoJS.mode.ECB,padding:CryptoJS.pad.Pkcs7});
     return CryptoJS.enc.Base64.stringify(encrypted.ciphertext);
 }
+
+/**
+ * 设置store对象，类似react的setState
+ * @param obj
+ */
+export function setStore(obj,that)  {
+    if (Object.prototype.toString.call(obj) === '[object Object]') {
+        for (let [key, value] of Object.entries(obj)) {
+            that[key] = value
+        }
+    }
+}

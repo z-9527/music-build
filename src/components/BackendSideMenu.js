@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import { Menu, Icon } from 'antd'
 import { Link, withRouter } from 'react-router-dom'
+import {inject} from "mobx-react/index";
 
 const {Item, SubMenu} = Menu
 
-@withRouter
+@withRouter @inject('backendStore')
 class SideMenu extends Component {
 
   static defaultProps = {
@@ -30,10 +31,7 @@ class SideMenu extends Component {
       if (item.leaf) {
         return (
           <Item key={`${item.id}`}>
-            <Link to={item.url} style={{display: 'inline-block'}}>
-              {item.icon && <Icon type={item.icon}/>}
-              <span>{item.name}</span>
-            </Link>
+            <div onClick={()=>this.add(item)} style={{display: 'inline-block'}}>{item.icon && <Icon type={item.icon}/>}<span>{item.name}</span></div>
           </Item>
         )
       } else {
@@ -45,6 +43,11 @@ class SideMenu extends Component {
       }
     })
   }
+
+    add = (item)=>{
+        this.props.backendStore.addTabPane(item)
+    }
+
 }
 
 export default SideMenu
