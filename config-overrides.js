@@ -3,26 +3,28 @@ const rewireLess = require('react-app-rewire-less-modules')
 const path = require('path')
 
 function resolve (dir) {
-  return path.join(__dirname, '.', dir)
+    return path.join(__dirname, '.', dir)
 }
 
 module.exports = function override (config, env) {
 
-  config = injectBabelPlugin(
-    ['@babel/plugin-proposal-decorators', {legacy: true}],
-    config
-  )
-  config = injectBabelPlugin(
-    ['import', {libraryName: 'antd', libraryDirectory: 'es', style: true}],
-    config,
-  )
-  config = rewireLess(config, env)
-  config = rewireLess.withLoaderOptions({
-    modifyVars: {'@layout-header-background': '#2f4050'},
-    javascriptEnabled: true,
-  })(config, env)
-  config.resolve.alias = {
-    '@': resolve('src')
-  }
-  return config
+    // do stuff with the webpack config...
+
+    //启用ES7的修改器语法（babel 7）
+    config = injectBabelPlugin(['@babel/plugin-proposal-decorators', {'legacy': true}], config)   //{ "legacy": true }一定不能掉，否则报错
+
+    //按需加载
+    config = injectBabelPlugin(['import', {libraryName: 'antd-mobile', style: 'css'}], config)
+
+    //配置别名
+    config.resolve.alias = {
+        '@': resolve('src')
+    }
+
+    config = rewireLess(config, env)
+    config = rewireLess.withLoaderOptions({
+        javascriptEnabled: true,
+    })(config, env)
+
+    return config
 }

@@ -1,0 +1,67 @@
+@import "../../../assets/style/default";
+
+.container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: #fff;
+  transition: all 0.25s;
+  font-size: @font-size-base;
+
+  .header {
+    width: 100%;
+    height: @header-height;
+    background: @base-color;
+    color: @color-text-base-inverse;
+    line-height: @header-height;
+    padding: 0 20px;
+  }
+
+  .navigation-menu {
+    display: flex;
+    background: @base-color;
+    color: @color-text-base-inverse;
+    height: @header-height;
+    line-height: @header-height;
+    margin-top: -1px; //消除和上面div的间隙
+    li {
+      flex-grow: 1;
+      text-align: center;
+
+      a{
+        display: block;
+        height: 100%;
+        color: @color-text-base-inverse;
+        opacity: .8;
+        font-size: @font-size-h3;
+        box-sizing: border-box;
+        &.active{
+          opacity: 1;
+          border-bottom: 3px solid @auxiliary-color;
+        }
+      }
+
+    }
+  }
+
+  .content{
+    position: fixed;
+    width: 100%;
+    top: 2*@header-height;
+    bottom: 0;
+    overflow: auto;
+    box-sizing: border-box;
+    background: @fill-body;
+  }
+
+  .mask {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: @fill-mask;
+    z-index: 199;
+  }
+}
