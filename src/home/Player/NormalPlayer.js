@@ -168,6 +168,7 @@ class NormalPlayer extends React.Component {
         return (
             <CSSTransition
                 onEnter={this.onEnter}
+                //10秒和300秒导致两个效果
                 timeout={10}
                 appear
                 classNames={'normal'}
