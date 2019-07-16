@@ -21,6 +21,8 @@ module.exports = function override (config, env) {
         '@': resolve('src')
     }
 
+    config.devtool = false; // 关掉 sourceMap 
+
     config = rewireLess(config, env)
     config = rewireLess.withLoaderOptions({
         javascriptEnabled: true,
